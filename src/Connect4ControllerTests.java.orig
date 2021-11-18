@@ -1,0 +1,89 @@
+<<<<<<< HEAD
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class Connect4ControllerTests {
+	@Test
+	void testGameOver() {
+		Connect4Model model = new Connect4Model();
+		model.activateTestMode();
+		Connect4Controller controller = new Connect4Controller(model);
+		assertFalse(controller.isGameOver());
+		controller.makeSelection(2);
+		controller.makeSelection(2);
+		controller.makeSelection(2);
+		// After 3 moves, it is impossible for the game to be over so ensure isGameOver still false
+		assertFalse(controller.isGameOver());
+		controller.makeSelection(2);
+		// The fourth move on column 2 should cause the game to be won
+		assertTrue(controller.isGameOver());
+	}
+
+
+	@Test
+	void testFullColumn() {
+		Connect4Model model = new Connect4Model();
+		model.activateTestMode();
+		Connect4Controller controller = new Connect4Controller(model);
+		controller.makeSelection(3);
+		controller.makeSelection(3);
+		controller.makeSelection(3);
+		controller.makeSelection(3);
+		controller.makeSelection(3);
+		controller.makeSelection(3);
+
+		// There are 6 rows in each column, so placing a 7th circle in column 3 should throw this exception
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				controller.makeSelection(3);
+		});
+
+	}
+
+}
+=======
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class Connect4ControllerTests {
+    @Test
+    void testGameOver() {
+        Connect4Model model = new Connect4Model();
+        model.activateTestMode();
+        Connect4Controller controller = new Connect4Controller(model);
+        assertFalse(controller.isGameOver());
+        controller.makeSelection(2);
+        controller.makeSelection(2);
+        controller.makeSelection(2);
+        // After 3 moves, it is impossible for the game to be over so ensure isGameOver still false
+        assertFalse(controller.isGameOver());
+        controller.makeSelection(2);
+        // The fourth move on column 2 should cause the game to be won
+        assertTrue(controller.isGameOver());
+    }
+
+
+    @Test
+    void testFullColumn() {
+        Connect4Model model = new Connect4Model();
+        model.activateTestMode();
+        Connect4Controller controller = new Connect4Controller(model);
+        controller.makeSelection(3);
+        controller.makeSelection(3);
+        controller.makeSelection(3);
+        controller.makeSelection(3);
+        controller.makeSelection(3);
+        controller.makeSelection(3);
+
+        // There are 6 rows in each column, so placing a 7th circle in column 3 should throw this exception
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            controller.makeSelection(3);
+        });
+
+    }
+
+} 
+>>>>>>> 49036982b403625dc8a4a6c1932acd7a8fd432ec
